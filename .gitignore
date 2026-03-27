@@ -1,0 +1,9 @@
+.jakal-control/
+.pytest_cache/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+jakal_control.egg-info/
+

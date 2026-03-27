@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Nightly Maintenance Sweep",
+    "repository_path": "C:/repos/example-service",
+    "repository_url_override": null,
+    "prompt_text": "Audit the repository, implement the highest-value safe maintenance task, run verification, and summarize the result.",
+    "prompt_file_path": null,
+    "model_provider": "openai",
+    "local_model_provider": null,
+    "model_name": "gpt-5.4",
+    "reasoning_effort": "medium",
+    "working_branch": "main",
+    "workspace_name": "example-service-nightly",
+    "test_command": "python -m pytest -q",
+    "approval_mode": "never",
+    "sandbox_mode": "workspace-write",
+    "max_blocks": 2,
+    "enabled": true,
+    "max_concurrent_runs": 1,
+    "stale_timeout_minutes": 45,
+    "retry_policy": {
+      "max_attempts": 2,
+      "retry_delay_seconds": 600,
+      "retry_on_crash": true,
+      "retry_on_failure": false,
+      "retry_on_stale": true
+    },
+    "schedules": [
+      {
+        "kind": "daily",
+        "timezone_name": "Asia/Seoul",
+        "hour": 2,
+        "minute": 30,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "name": "Weekday Regression Patrol",
+    "repository_path": "C:/repos/example-ui",
+    "repository_url_override": null,
+    "prompt_text": null,
+    "prompt_file_path": "C:/repos/example-ui/.jakal/prompts/regression-patrol.md",
+    "model_provider": "openai",
+    "local_model_provider": null,
+    "model_name": "gpt-5.4",
+    "reasoning_effort": "high",
+    "working_branch": "main",
+    "workspace_name": "example-ui-regression",
+    "test_command": "npm test -- --runInBand",
+    "approval_mode": "never",
+    "sandbox_mode": "workspace-write",
+    "max_blocks": 1,
+    "enabled": true,
+    "max_concurrent_runs": 1,
+    "stale_timeout_minutes": 30,
+    "retry_policy": {
+      "max_attempts": 1,
+      "retry_delay_seconds": 300,
+      "retry_on_crash": true,
+      "retry_on_failure": false,
+      "retry_on_stale": false
+    },
+    "schedules": [
+      {
+        "kind": "weekdays",
+        "timezone_name": "Asia/Seoul",
+        "hour": 9,
+        "minute": 0,
+        "weekdays": [0, 1, 2, 3, 4],
+        "enabled": true
+      },
+      {
+        "kind": "every_hours",
+        "timezone_name": "Asia/Seoul",
+        "start_at_local": "2026-03-27T09:00",
+        "interval_hours": 12,
+        "enabled": false
+      }
+    ]
+  }
+]
